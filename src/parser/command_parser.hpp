@@ -1,4 +1,4 @@
-#include "..\printer\printer.hpp"
+#include "../printer/printer.hpp"
 
 enum class CommandParserState
 {
