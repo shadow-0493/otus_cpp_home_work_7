@@ -6,5 +6,6 @@
 class Printer
 {
 public:
-    virtual void print(std::vector<std::string> &cmds);
+    virtual ~Printer() = default;
+    virtual void print(const std::vector<std::string> &cmds) = 0;
 };
