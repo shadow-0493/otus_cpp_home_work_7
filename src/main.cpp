@@ -15,7 +15,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    size_t N = std::stoul(argv[1]);
+    long N = std::stol(argv[1]);
+    std::cout << N;
     CommandParser parser = CommandParser(N);
 
     ConsolePrinter console_printer;

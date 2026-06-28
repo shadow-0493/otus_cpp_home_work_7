@@ -1,9 +1,14 @@
 #include "command_parser.hpp"
 #include <stdexcept>
 
-CommandParser::CommandParser(size_t cmd_block_size) : cmd_block_size_(cmd_block_size)
+CommandParser::CommandParser(long cmd_block_size) : cmd_block_size_(cmd_block_size)
 {
     buffer_.reserve(cmd_block_size_);
+
+    if (cmd_block_size <= 0)
+    {
+        throw std::invalid_argument("cmd_block_size must be greater than 0, got: " + std::to_string(cmd_block_size));
+    }
 }
 
 void CommandParser::add_printer(Printer *printer)
@@ -50,7 +55,7 @@ void CommandParser::process(const std::string &line)
         else
         {
             buffer_.push_back(line);
-            ++cmd_count_;
+            cmd_count_++;
 
             if (cmd_count_ == cmd_block_size_)
             {

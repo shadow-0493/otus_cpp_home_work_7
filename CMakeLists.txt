@@ -8,8 +8,10 @@ project(bulk VERSION ${PROJECT_VERSION})
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(bulk src/main.cpp
-               src/parser/command_parser.cpp)
+add_executable(bulk 
+    src/main.cpp
+    src/parser/command_parser.cpp
+)
 
 if (MSVC)
     target_compile_options(bulk PRIVATE /W4)
@@ -17,7 +19,42 @@ else ()
     target_compile_options(bulk PRIVATE -Wall -Wextra -pedantic -Werror)
 endif()
 
+target_include_directories(bulk PRIVATE
+    src/parser
+    src/printer
+)
+
 install(TARGETS bulk RUNTIME DESTINATION bin)
+
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+    DOWNLOAD_EXTRACT_TIMESTAMP TRUE 
+)
+FetchContent_MakeAvailable(googletest)
+
+add_executable(test_bulk
+    tests/command_parser_tests.cpp
+    src/parser/command_parser.cpp
+)
+
+target_include_directories(test_bulk PRIVATE
+    src/parser
+    src/printer
+    tests
+)
+
+target_link_libraries(test_bulk
+    GTest::gtest
+    GTest::gtest_main
+)
+
+if (MSVC)
+    target_compile_options(test_bulk PRIVATE /W4)
+else ()
+    target_compile_options(test_bulk PRIVATE -Wall -Wextra -pedantic -Werror)
+endif()
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_NAME "bulk")
@@ -31,4 +68,4 @@ set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${PROJECT_VERSION}-Linux")
 include(CPack)
 
 enable_testing()
-
+add_test(NAME BulkTests COMMAND test_bulk)
