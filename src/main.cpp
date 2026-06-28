@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     }
 
     long N = std::stol(argv[1]);
-    std::cout << N;
+
     CommandParser parser = CommandParser(N);
 
     ConsolePrinter console_printer;
