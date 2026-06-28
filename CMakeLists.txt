@@ -34,7 +34,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-add_executable(test_bulk
+add_executable(test_bulk EXCLUDE_FROM_ALL
     tests/command_parser_tests.cpp
     src/parser/command_parser.cpp
 )
@@ -70,4 +70,3 @@ include(CPack)
 enable_testing()
 include(GoogleTest)
 gtest_discover_tests(test_bulk)
-#add_test(NAME BulkTests COMMAND test_bulk)
