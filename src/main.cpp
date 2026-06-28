@@ -9,6 +9,8 @@
 
 int main(int argc, char *argv[])
 {
+    int m;
+
     if (argc != 2)
     {
         std::cerr << "Usage: bulk <N>" << std::endl;
