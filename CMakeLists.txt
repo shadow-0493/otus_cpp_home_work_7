@@ -68,4 +68,6 @@ set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${PROJECT_VERSION}-Linux")
 include(CPack)
 
 enable_testing()
-add_test(NAME BulkTests COMMAND test_bulk)
+include(GoogleTest)
+gtest_discover_tests(test_bulk)
+#add_test(NAME BulkTests COMMAND test_bulk)
