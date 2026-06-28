@@ -13,12 +13,6 @@ add_executable(bulk
     src/parser/command_parser.cpp
 )
 
-if (MSVC)
-    target_compile_options(bulk PRIVATE /W4)
-else ()
-    target_compile_options(bulk PRIVATE -Wall -Wextra -pedantic -Werror)
-endif()
-
 target_include_directories(bulk PRIVATE
     src/parser
     src/printer
@@ -51,8 +45,10 @@ target_link_libraries(test_bulk
 )
 
 if (MSVC)
+    target_compile_options(bulk PRIVATE /W4)
     target_compile_options(test_bulk PRIVATE /W4)
 else ()
+    target_compile_options(bulk PRIVATE -Wall -Wextra -pedantic -Werror)
     target_compile_options(test_bulk PRIVATE -Wall -Wextra -pedantic -Werror)
 endif()
 
