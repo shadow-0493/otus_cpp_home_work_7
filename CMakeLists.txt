@@ -34,7 +34,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-add_executable(test_bulk EXCLUDE_FROM_ALL
+add_executable(test_bulk
     tests/command_parser_tests.cpp
     src/parser/command_parser.cpp
 )
