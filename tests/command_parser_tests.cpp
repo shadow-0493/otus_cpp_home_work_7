@@ -37,9 +37,9 @@ TEST(CommandParserConstructorTest, ZeroBlockSize)
 
 TEST(CommandParserConstructorTest, NegativeBlockSize)
 {
-    EXPECT_THROW(CommandParser(-1), std::invalid_argument);
-    EXPECT_THROW(CommandParser(-5), std::invalid_argument);
-    EXPECT_THROW(CommandParser(-100), std::invalid_argument);
+    EXPECT_THROW(CommandParser(-1l), std::invalid_argument);
+    EXPECT_THROW(CommandParser(-5l), std::invalid_argument);
+    EXPECT_THROW(CommandParser(-100l), std::invalid_argument);
 }
 
 TEST(CommandParserConstructorTest, PositiveBlockSize)

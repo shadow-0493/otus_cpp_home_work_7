@@ -3,12 +3,12 @@
 
 CommandParser::CommandParser(long cmd_block_size) : cmd_block_size_(cmd_block_size)
 {
-    buffer_.reserve(cmd_block_size_);
-
     if (cmd_block_size <= 0)
     {
         throw std::invalid_argument("cmd_block_size must be greater than 0, got: " + std::to_string(cmd_block_size));
     }
+
+    buffer_.reserve(cmd_block_size_);
 }
 
 void CommandParser::add_printer(Printer *printer)
